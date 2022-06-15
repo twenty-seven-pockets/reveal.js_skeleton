@@ -1,1 +1,14 @@
 /* add custom css for your presentation here  */
+
+
+cite {
+    display: block;
+    text-align: end;
+    padding:0px;
+    margin:0px;
+    padding-right:1vw
+    
+}
+cite::before {
+    content : "—— "
+}
