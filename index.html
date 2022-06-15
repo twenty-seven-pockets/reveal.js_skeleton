@@ -1,47 +1,92 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="author" content="Felix Mallot fmallot@pm.me">
+		<meta name="language" content="DE">
+		<!-- <meta name="language" content="EN"> -->
 
-    <title>reveal.js</title>
+		<!-- Meta Tags to set by presentation TODO -->
+		<meta name="topic" content=""> 
+		<meta name="keywords" content="presentation revealjs" />
+		<meta name="description" content="150 words" />
+		
 
-    <link rel="stylesheet" href="dist/reset.css" />
-    <link rel="stylesheet" href="dist/reveal.css" />
-    <link rel="stylesheet" href="dist/theme/black.css" />
+		<!-- TODO:  <title></title> -->
 
-    <!-- Theme used for syntax highlighted code -->
-    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
-  </head>
-  <body>
-    <div class="reveal">
-      <div class="slides">
-        <section
-          data-markdown="markdown.md"
-          data-separator="^---"
-          data-separator-vertical="^--"
-        ></section>
-      </div>
-    </div>
 
-    <script src="dist/reveal.js"></script>
-    <script src="plugin/notes/notes.js"></script>
-    <script src="plugin/markdown/markdown.js"></script>
-    <script src="plugin/highlight/highlight.js"></script>
-    <script>
-      // More info about initialization & config:
-      // - https://revealjs.com/initialization/
-      // - https://revealjs.com/config/
-      Reveal.initialize({
-        // Learn about plugins: https://revealjs.com/plugins/
-        // Snippet of all Options: rvconfig
-        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
 
-        
-      });
-    </script>
-  </body>
+		<!-- Choose your base theme here -->                                                                                                       
+		<!-- <link rel="stylesheet" href="css/theme/beige.css"> -->
+		<link rel="stylesheet" href="css/theme/black.css">
+		<!-- <link rel="stylesheet" href="css/theme/blood.css"> -->
+		<!-- <link rel="stylesheet" href="css/theme/league.css"> -->
+		<!-- <link rel="stylesheet" href="css/theme/moon.css"> -->
+		<!-- <link rel="stylesheet" href="css/theme/night.css"> -->
+		<!-- <link rel="stylesheet" href="css/theme/serif.css"> -->
+		<!-- <link rel="stylesheet" href="css/theme/simple.css"> -->
+		<!-- <link rel="stylesheet" href="css/theme/sky.css"> -->
+		<!-- <link rel="stylesheet" href="css/theme/solarized.css"> -->
+		<!-- <link rel="stylesheet" href="css/theme/white.css"> -->		
+
+		<!-- Add custom css properties through custom.css -->
+		<!-- <link rel="stylesheet" href="css/custom.css"> -->		
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="js/plugin/highlight/monokai.css">
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				
+				<!-- Import Markdown Slides for easier worklfow -->
+				<!-- This is an example presentation meant to showcase the features -->
+                <section data-markdown="slides/example.md" data-separator="^---$" data-separator-vertical="^--$"></section>
+
+				<!-- or add your own slides here -->
+				<!-- <section>Slide 1</section> -->
+				
+			</div>
+		</div>
+
+		<!-- Import Reveal Functionalities -->
+		<script src="js/reveal.js"></script>
+		<!-- 
+			Import Community Plugins for Reveal 
+			Learn about plugins: https://revealjs.com/plugins/
+		-->
+		<script src="js/plugin/highlight/highlight.js"></script>
+		<!-- <script src="js/plugin/math/math.js"></script> TODO Figure why math plugin isn't working, see config -->
+		<script src="js/plugin/markdown/markdown.js"></script>
+		<script src="js/plugin/notes/notes.js"></script>
+		<script src="js/plugin/search/search.js"></script>
+		<script src="js/plugin/zoom/zoom.js"></script>
+		
+		<!-- Import Custom Functionality for Reveal-->
+		<!-- <script src="js/plugin/fragmenter/fragmenter.js"></script> -->
+		
+
+		<!-- Configure reveal.js here -->
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ 
+					RevealMarkdown,
+					RevealHighlight,
+					RevealNotes,
+					// RevealMath.KaTeX, TODO Figure out why it's loading the resources via cors
+					RevealSearch,
+					RevealZoom, ]
+			});
+		</script>
+	</body>
 </html>

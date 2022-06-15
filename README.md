@@ -1,11 +1,8 @@
-# Introduction
+# Presentational Boilerplate Project
 
-This repo contains a bare-bones template for reveal.js presentations. 
+## Structure
 
-## Workflow
+### ./slides
 
-1. Initialize Repo with ```npm i```
-2. Run live build of Presentation with ```npm run dev```
-3. Edit presentation
-4. Build final presentation or run npm from repo for presenting
-
+Presentations are supposed to be made using markdown and added to the framework via import functionalities. 
+The markdown files are stored in ./slides/
