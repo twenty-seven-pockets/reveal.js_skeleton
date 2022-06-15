@@ -29,7 +29,6 @@ Note: This will only appear in the speaker notes window.
 
 ![External Image](https://s3.amazonaws.com/static.slid.es/logo/v2/slides-symbol-512x512.png) <!-- .element: class="figure" caption="An External Image" -->
 
-
 --
 
 ### Math
