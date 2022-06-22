@@ -12,3 +12,25 @@ cite {
 cite::before {
     content : "—— "
 }
+
+
+/*
+Figure Definition
+*/
+
+/* figure {
+    
+} */
+
+figure figcaption span {
+    border-top : 1px solid beige;
+    border-style: inset;
+    padding-top:5px;
+    font-size: large;
+}
+
+
+li.align-middle{
+    text-align: center;
+    list-style: none;
+}

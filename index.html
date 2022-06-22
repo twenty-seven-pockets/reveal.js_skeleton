@@ -45,6 +45,7 @@
 
         <!-- Import Markdown Slides for easier worklfow -->
         <!-- This is an example presentation meant to showcase the features -->
+        <!-- #TODO: add additional JS examples to file -->
         <section
           data-markdown="slides/example.md"
           data-separator="^---"
@@ -356,8 +357,9 @@
       const addQuoteSource = () => {
         Reveal.getSlides().forEach(slide => slide.querySelectorAll('blockquote').forEach(quote => {
           let source = document.createElement('cite');
-          source.textContent = quote.querySelector('.quote').getAttribute("source");
-          quote.append(source);
+          source.textContent = quote.querySelector('.quote')?.getAttribute("source");
+
+          if (source.textContent !== "")quote.append(source);
 
       }))};
       /**
@@ -367,31 +369,75 @@
         Reveal.getSlides().forEach(slide => slide.querySelectorAll('img.figure').forEach(img => {
           let fig = document.createElement('figure');
           let capt = document.createElement('figcaption')
-          capt.textContent = img.getAttribute('caption')
+          let span = document.createElement('span');
+          span.textContent = img.getAttribute('caption')
+          capt.append(span)
           fig.append(img)
           fig.append(capt)
           slide.append(fig)
         }))
       }
-
+      const findParentList = (listItem) => {
+        let item = listItem;
+        do {
+          item = item.parentNode;
+        }
+        while (item.tagName !== "UL")
+        return item;
+      }
+      const alignMiddleAll = (item) => findParentList(item).querySelectorAll(":scope > li").forEach(li => li.classList.add('align-middle'))
       /**
        * Add 'fragment' class to all list entries that have at least one sibling with the class .explode
        * usage:
-       * - fragmented list <!-- .element: class="explode" -->
+       * - fragmented list <!-- .element: class="explode-all" -->
        */
       const explodeLists = () => {
-        Reveal.getSlides().forEach((slide) =>
-          slide.querySelectorAll(".explode").forEach((item) => {
-            const list = item.tagName === "LI" ? item.parentNode : null;
-            if (!list) {
-              console.error("Could not find list tag for list item tag.");
-              return -1;
+        Reveal.getSlides().forEach((slide) => {
+          // if slide contains a single explode all, explode all list element on that slide 
+          if (slide.querySelectorAll("li.explode-all").length > 0 ){
+            slide.querySelectorAll('li').forEach(item => item.classList.add('fragment'))
+          }
+          slide.querySelectorAll('.align-middle-all').forEach(o => alignMiddleAll(o))
+          // ### Explode all siblings and this entry
+          // if slide contains explode-level, add fragment to all siblings of this list item
+          slide.querySelectorAll("li.explode-level").forEach(item => {
+            item.parentNode.querySelectorAll(":scope > li").forEach(item => item.classList.add('fragment'))
+          });
+          // ### Explode all children of an entry
+          slide.querySelectorAll("li.explode-children").forEach(item => {
+            item.querySelectorAll(":scope li").forEach(item => item.classList.add('fragment'))
+          });
+          // ### Explode a Single Line 
+          slide.querySelectorAll("li.explode-line").forEach(item => {
+            // split line content by ',' and remove first entry
+            // this causes the first entry to appear with the bullet point
+            const txt = item.textContent.split(",").splice(1);
+            item.textContent = item.textContent.split(",")[0] + ", "
+
+            // helper function that wraps string in span.fragment element and returns it
+            const wrapInSpan = (string) => {
+              const span = document.createElement('span');
+              span.textContent = string
+              span.classList.add('fragment')
+              return span;
             }
-            list
-              .querySelectorAll("li")
-              .forEach((n) => n.classList.add("fragment"));
-          })
-        );
+
+            // remove last entry due to commata 
+            const lst = txt.pop()
+            // add comma separated 
+            txt.forEach(txtItem => {
+              item.append(wrapInSpan(txtItem + ", "))
+            })
+            // add last entry 
+            item.append(wrapInSpan(lst))
+
+            // case the entire entry to be a fragment 
+            item.classList.add('fragment')
+            
+          }
+          )
+        });
+
       };
     </script>
   </body>
