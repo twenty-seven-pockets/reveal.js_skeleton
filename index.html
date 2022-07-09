@@ -395,7 +395,10 @@
         Reveal.getSlides().forEach((slide) => {
           // if slide contains a single explode all, explode all list element on that slide 
           if (slide.querySelectorAll("li.explode-all").length > 0 ){
+            
             slide.querySelectorAll('li').forEach(item => item.classList.add('fragment'))
+            // unset fragment for notes 
+            slide.querySelectorAll(".notes li.fragment").forEach(i => i.classList.remove('fragment'))
           }
           slide.querySelectorAll('.align-middle-all').forEach(o => alignMiddleAll(o))
           // ### Explode all siblings and this entry
